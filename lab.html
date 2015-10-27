@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Lab6 | Ali Tariq</title>
+<style>
+div.first {max-height: 70px;  top:70px; position:absolute; width:80%; left:8%}
+div.second {max-height: 70px;top:400px; position:absolute; width:80%; left:8%}
+#circle {
+  width: 20px;
+	height: 20px;
+	background: red;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+</style>
+
+</head>
+
+<body>
+<div class="first">
+<ul id="list1" >
+</ul>
+</div>
+
+<div class="second" id="second">
+<ul id="list2" >
+</ul>
+</div>
+
+
+<script type="text/javascript" src="colors.json"></script>
+<script type="text/javascript">
+var mydata = JSON.parse(data);
+var ul1 = document.getElementById("list1");
+
+
+for (var i=0;i<mydata.length;i++)
+{
+	var li = document.createElement("li");
+	li.appendChild(document.createTextNode(""+mydata[i].color));
+	li.setAttribute("id", ""+i); 
+	li.setAttribute("onclick", "clicked(this.id)"); 
+	var div = document.createElement("div");
+	div.setAttribute("id", "circle");
+	div.appendChild(document.createTextNode(" "));
+	div.style.background=""+mydata[i].value;
+	li.appendChild(div);
+  	ul1.appendChild(li);	
+}
+
+
+var ul2 = document.getElementById("list2");
+
+
+for (var i=0;i<mydata.length;i++)
+{
+	var li = document.createElement("li");
+	li.appendChild(document.createTextNode(""+mydata[i].color+" : "+mydata[i].value));
+	li.setAttribute("id", "0"+i); 
+  	ul2.appendChild(li);	
+}
+
+var second_div = document.getElementById("second");
+//second.scrollTop=60;
+
+function clicked(id)
+{
+	for (var i=0; i<mydata.length; i++)
+	{
+		var elem1 = document.getElementById("0"+i);
+		elem1.style.color="black";	
+	}
+	var elem = document.getElementById("0"+id);	
+	var color = mydata[id].value;
+	elem.style.color = color;
+		
+}
+
+</script>
+
+</body>
+</html>
